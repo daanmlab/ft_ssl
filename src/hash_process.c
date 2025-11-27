@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hash_process.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dabalm <dabalm@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/27 22:36:45 by dabalm            #+#    #+#             */
+/*   Updated: 2025/11/27 22:36:46 by dabalm           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ssl.h"
 
-static void	hash_fd_to_buffer(int fd, t_hash_algorithm *algo, void *ctx)
+void	hash_fd_to_buffer(int fd, t_hash_algorithm *algo, void *ctx)
 {
 	char	buffer[4096];
 	int		bytes_read;
@@ -99,29 +111,4 @@ void	process_hash_file(char *filename, t_hash_flags *flags)
 	}
 	else
 		print_file_normal(filename, flags->algo, ctx);
-}
-
-void	process_hash_stdin(t_hash_flags *flags)
-{
-	uint8_t	ctx[256];
-
-	hash_fd_to_buffer(STDIN_FILENO, flags->algo, ctx);
-	flags->algo->finalize(ctx);
-	if (flags->quiet)
-	{
-		flags->algo->print_hash(ctx);
-		ft_putchar_out('\n');
-	}
-	else if (flags->reverse)
-	{
-		flags->algo->print_hash(ctx);
-		ft_putstr_out(" *stdin");
-		ft_putchar_out('\n');
-	}
-	else
-	{
-		ft_putstr_out("(stdin)= ");
-		flags->algo->print_hash(ctx);
-		ft_putchar_out('\n');
-	}
 }

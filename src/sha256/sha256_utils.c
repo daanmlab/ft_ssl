@@ -1,48 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   output_utils.c                                     :+:      :+:    :+:   */
+/*   sha256_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dabalm <dabalm@student.42berlin.de>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 22:36:34 by dabalm            #+#    #+#             */
-/*   Updated: 2025/11/27 22:36:34 by dabalm           ###   ########.fr       */
+/*   Created: 2025/11/27 22:36:29 by dabalm            #+#    #+#             */
+/*   Updated: 2025/11/27 22:36:30 by dabalm           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ssl.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+uint32_t	rotr(uint32_t a, int i)
 {
-	int	len;
-
-	len = 0;
-	while (s[len])
-		len++;
-	if (len > 0)
-		write(fd, s, len);
+	return ((a >> i) | (a << (32 - i)));
 }
 
-void	ft_putstr_err(const char *s)
+uint32_t	compute_big_s1(uint32_t e)
 {
-	ft_putstr_fd(s, 2);
+	return (rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25));
 }
 
-void	ft_putstr_out(const char *s)
+uint32_t	compute_big_s0(uint32_t a)
 {
-	ft_putstr_fd(s, 1);
+	return (rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22));
 }
 
-void	ft_putchar_out(char c)
+uint32_t	compute_s0(uint32_t word)
 {
-	write(1, &c, 1);
+	return (rotr(word, 7) ^ rotr(word, 18) ^ (word >> 3));
 }
 
-void	print_hex_byte(unsigned char byte)
+uint32_t	compute_s1(uint32_t word)
 {
-	const char	*hex;
-
-	hex = "0123456789abcdef";
-	ft_putchar_out(hex[byte >> 4]);
-	ft_putchar_out(hex[byte & 0x0F]);
+	return (rotr(word, 17) ^ rotr(word, 19) ^ (word >> 10));
 }

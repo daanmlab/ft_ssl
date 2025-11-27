@@ -1,21 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   md5_process.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dabalm <dabalm@student.42berlin.de>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/27 22:36:12 by dabalm            #+#    #+#             */
+/*   Updated: 2025/11/27 22:36:13 by dabalm           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ssl.h"
 
-void print_md5_hash(s_md5_state result)
+void	print_md5_hash(t_md5_state result)
 {
-  print_hex_byte((result.A & 0xFF));
-  print_hex_byte(((result.A >> 8) & 0xFF));
-  print_hex_byte(((result.A >> 16) & 0xFF));
-  print_hex_byte(((result.A >> 24) & 0xFF));
-  print_hex_byte((result.B & 0xFF));
-  print_hex_byte(((result.B >> 8) & 0xFF));
-  print_hex_byte(((result.B >> 16) & 0xFF));
-  print_hex_byte(((result.B >> 24) & 0xFF));
-  print_hex_byte((result.C & 0xFF));
-  print_hex_byte(((result.C >> 8) & 0xFF));
-  print_hex_byte(((result.C >> 16) & 0xFF));
-  print_hex_byte(((result.C >> 24) & 0xFF));
-  print_hex_byte((result.D & 0xFF));
-  print_hex_byte(((result.D >> 8) & 0xFF));
-  print_hex_byte(((result.D >> 16) & 0xFF));
-  print_hex_byte(((result.D >> 24) & 0xFF));
+	print_hex_byte((result.a & 0xFF));
+	print_hex_byte(((result.a >> 8) & 0xFF));
+	print_hex_byte(((result.a >> 16) & 0xFF));
+	print_hex_byte(((result.a >> 24) & 0xFF));
+	print_hex_byte((result.b & 0xFF));
+	print_hex_byte(((result.b >> 8) & 0xFF));
+	print_hex_byte(((result.b >> 16) & 0xFF));
+	print_hex_byte(((result.b >> 24) & 0xFF));
+	print_hex_byte((result.c & 0xFF));
+	print_hex_byte(((result.c >> 8) & 0xFF));
+	print_hex_byte(((result.c >> 16) & 0xFF));
+	print_hex_byte(((result.c >> 24) & 0xFF));
+	print_hex_byte((result.d & 0xFF));
+	print_hex_byte(((result.d >> 8) & 0xFF));
+	print_hex_byte(((result.d >> 16) & 0xFF));
+	print_hex_byte(((result.d >> 24) & 0xFF));
 }
