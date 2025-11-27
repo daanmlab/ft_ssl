@@ -82,7 +82,7 @@ int _get_word_index(int i)
 
 
 
-void _process_block(struct t_ctx *ctx)
+static void _process_block(struct t_md5_ctx *ctx)
 {
   uint32_t words[16];
   int i;
@@ -118,7 +118,7 @@ void _process_block(struct t_ctx *ctx)
 }
 
 
-void md5_init(s_ctx *ctx){
+void md5_init(s_md5_ctx *ctx){
   ctx->state.A = 0x67452301;
   ctx->state.B = 0xefcdab89;
   ctx->state.C = 0x98badcfe;
@@ -127,7 +127,7 @@ void md5_init(s_ctx *ctx){
   ctx->bitlen = 0x00;
 }
 
-void md5_update(s_ctx *ctx, const uint8_t *data, size_t size)
+void md5_update(s_md5_ctx *ctx, const uint8_t *data, size_t size)
 {
   ctx->bitlen += (uint64_t)size * 8;
   
@@ -144,7 +144,7 @@ void md5_update(s_ctx *ctx, const uint8_t *data, size_t size)
   
 }
 
-void md5_finalize(s_ctx *ctx){
+void md5_finalize(s_md5_ctx *ctx){
   ctx->block[ctx->block_len++] = 0x80;
 
   if (ctx->block_len > 56){
