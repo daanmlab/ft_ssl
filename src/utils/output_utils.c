@@ -1,48 +1,36 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   output_utils.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: dabalm <dabalm@student.42berlin.de>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/27 22:36:34 by dabalm            #+#    #+#             */
-/*   Updated: 2025/11/27 22:36:34 by dabalm           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_ssl.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+void ft_putstr_fd(const char *s, int fd)
 {
-	int	len;
+  int len;
 
-	len = 0;
-	while (s[len])
-		len++;
-	if (len > 0)
-		write(fd, s, len);
+  len = 0;
+  while (s[len])
+    len++;
+  if (len > 0)
+    write(fd, s, len);
 }
 
-void	ft_putstr_err(const char *s)
+void ft_putstr_err(const char *s)
 {
-	ft_putstr_fd(s, 2);
+  ft_putstr_fd(s, 2);
 }
 
-void	ft_putstr_out(const char *s)
+void ft_putstr_out(const char *s)
 {
-	ft_putstr_fd(s, 1);
+  ft_putstr_fd(s, 1);
 }
 
-void	ft_putchar_out(char c)
+void ft_putchar_out(char c)
 {
-	write(1, &c, 1);
+  write(1, &c, 1);
 }
 
-void	print_hex_byte(unsigned char byte)
+void print_hex_byte(unsigned char byte)
 {
-	const char	*hex;
+  const char *hex;
 
-	hex = "0123456789abcdef";
-	ft_putchar_out(hex[byte >> 4]);
-	ft_putchar_out(hex[byte & 0x0F]);
+  hex = "0123456789abcdef";
+  ft_putchar_out(hex[byte >> 4]);
+  ft_putchar_out(hex[byte & 0x0F]);
 }

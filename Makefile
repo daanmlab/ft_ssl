@@ -11,15 +11,10 @@ UTILS_DIR = $(SRC_DIR)/utils
 SRCS = $(SRC_DIR)/main.c \
        $(SRC_DIR)/hash_common.c \
        $(SRC_DIR)/hash_process.c \
-       $(SRC_DIR)/hash_stdin.c \
-       $(SRC_DIR)/hash_algorithms.c \
-       $(SRC_DIR)/sha256_algorithms.c \
        $(MD5_DIR)/md5.c \
        $(MD5_DIR)/md5_process.c \
-       $(MD5_DIR)/md5_utils.c \
        $(SHA256_DIR)/sha256.c \
        $(SHA256_DIR)/sha256_process.c \
-       $(SHA256_DIR)/sha256_utils.c \
        $(UTILS_DIR)/string_utils.c \
        $(UTILS_DIR)/output_utils.c
 
